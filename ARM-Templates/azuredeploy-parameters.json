@@ -8,7 +8,22 @@
         "metadata": {
             "description": "The name of the Azure storage resource"
         }
-    }},
+    },
+    //  This is the allowed values list for an Azure Storage Account
+    "storageSKU": {
+   "type": "string",
+   "defaultValue": "Standard_LRS",
+   "allowedValues": [
+     "Standard_LRS",
+     "Standard_GRS",
+     "Standard_RAGRS",
+     "Standard_ZRS",
+     "Premium_LRS",
+     "Premium_ZRS",
+     "Standard_GZRS",
+     "Standard_RAGZRS"
+   ]
+ }},
     "functions": [],
     "variables": {},
     "resources": [{
@@ -21,9 +36,13 @@
         "location": "[resourceGroup().location]",
         "kind": "StorageV2",
         "sku": {
-            "name": "Standard_LRS",
+            "name": "[parameters('storageSKU')]",
             "tier": "Standard"
         }
     }],
-    "outputs": {}
+    "outputs": {
+        "storageEndpoint": {
+        "type": "object",
+        "value": "[reference(parameters('storageName')).primaryEndpoints]"
+    }}
 }

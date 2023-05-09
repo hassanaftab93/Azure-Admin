@@ -1,0 +1,9 @@
+The allowed types of parameters are:
+
+string
+secureString
+integers
+boolean
+object
+secureObject
+array

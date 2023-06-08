@@ -1,3 +1,5 @@
+# pass Param on runtime during command: e.g ./createVMs.ps1 resourceGroupNameHere
+
 param([string]$resourceGroup)
 
 $adminCredential = Get-Credential -Message "Enter a username and password for the VM administrator."
